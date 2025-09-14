@@ -16,10 +16,10 @@ export class AuthService {
   public currentUser = this.currentUserSubject.asObservable();
 
   private users = [
-    { id: '1', email: 'admin@pepboys.com', name: 'John Admin', role: 'admin' as const, password: 'admin123' },
-    { id: '2', email: 'manager@pepboys.com', name: 'Sarah Manager', role: 'manager' as const, password: 'manager123' },
-    { id: '3', email: 'tech@pepboys.com', name: 'Mike Tech', role: 'technician' as const, password: 'tech123' },
-    { id: '4', email: 'reception@pepboys.com', name: 'Lisa Front', role: 'receptionist' as const, password: 'reception123' }
+    { id: '1', email: 'admin@pepboys.com', name: 'Pep Admin', role: 'admin' as const, password: 'admin123' },
+    { id: '2', email: 'manager@pepboys.com', name: 'Pep Manager', role: 'manager' as const, password: 'manager123' },
+    { id: '3', email: 'tech@pepboys.com', name: 'Pep Tech', role: 'technician' as const, password: 'tech123' },
+    { id: '4', email: 'reception@pepboys.com', name: 'Pep Front', role: 'receptionist' as const, password: 'reception123' }
   ];
 
   constructor() {

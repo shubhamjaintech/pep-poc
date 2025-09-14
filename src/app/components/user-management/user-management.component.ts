@@ -15,10 +15,10 @@ export class UsersComponent {
 
   showForm = signal(false);
   users = signal([
-    { id: '1', name: 'John Admin', email: 'admin@pepboys.com', role: 'admin', active: true },
-    { id: '2', name: 'Sarah Manager', email: 'manager@pepboys.com', role: 'manager', active: true },
-    { id: '3', name: 'Mike Tech', email: 'tech@pepboys.com', role: 'technician', active: true },
-    { id: '4', name: 'Lisa Front', email: 'reception@pepboys.com', role: 'receptionist', active: false }
+    { id: '1', name: 'Pep Admin', email: 'admin@pepboys.com', role: 'admin', active: true },
+    { id: '2', name: 'Pep Manager', email: 'manager@pepboys.com', role: 'manager', active: true },
+    { id: '3', name: 'Pep Tech', email: 'tech@pepboys.com', role: 'technician', active: true },
+    { id: '4', name: 'Pep Front', email: 'reception@pepboys.com', role: 'receptionist', active: false }
   ]);
 
   userForm = this.fb.group({

@@ -8,7 +8,7 @@ export class ServiceService {
   private servicesSubject = new BehaviorSubject<any[]>([
     {
       id: '1',
-      customerName: 'John Doe',
+      customerName: 'c1ient A',
       vehicleInfo: '2020 Toyota Camry',
       serviceType: 'oil-change',
       status: 'completed',
@@ -19,7 +19,7 @@ export class ServiceService {
     },
     {
       id: '2',
-      customerName: 'Jane Smith',
+      customerName: 'client B',
       vehicleInfo: '2019 Honda Civic',
       serviceType: 'brake-repair',
       status: 'in-progress',
