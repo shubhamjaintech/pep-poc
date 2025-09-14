@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class UsersComponent {
   private fb = inject(FormBuilder);
-  private auth = inject(AuthService);
+  // private auth = inject(AuthService);
 
   showForm = signal(false);
   users = signal([
