@@ -1,0 +1,63 @@
+template: `
+    <div>
+      <h2>Manage Services</h2>
+
+      <div style="margin-bottom: 20px;">
+        <label style="margin-right: 10px;">Filter by Status:</label>
+        <select (change)="filterStatus($event)" style="padding: 5px;">
+          <option value="">All</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background: #f8f9fa;">
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Customer</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Vehicle</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Service</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Status</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Priority</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Cost</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of filteredServices()" style="border-bottom: 1px solid #ddd;">
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ service.customerName }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ service.vehicleInfo }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ service.serviceType }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">
+                <select [value]="service.status" 
+                        (change)="updateStatus(service.id, $event)"
+                        style="padding: 5px;">
+                  <option value="pending">Pending</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </td>
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ service.priority }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ service.cost }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">
+                <button style="padding: 5px 10px; margin-right: 5px; background: #007bff; color: white; border: none;">
+                  View
+                </button>
+                <button style="padding: 5px 10px; background: #dc3545; color: white; border: none;">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="filteredServices().length === 0" 
+           style="text-align: center; padding: 40px; color: #666;">
+        No services found
+      </div>
+    </div>
+  `

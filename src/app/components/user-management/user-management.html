@@ -1,0 +1,75 @@
+
+    <div>
+      <h2>User Management</h2>
+
+      <button (click)="showForm.set(!showForm())" 
+              style="padding: 10px 15px; background: #28a745; color: white; border: none; margin-bottom: 20px;">
+        {{ showForm() ? 'Cancel' : 'Add User' }}
+      </button>
+
+      <div *ngIf="showForm()" style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px;">
+        <h3>Add New User</h3>
+        <form [formGroup]="userForm" (ngSubmit)="addUser()">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+            <div>
+              <label>Name*</label>
+              <input formControlName="name" style="width: 100%; padding: 8px;">
+            </div>
+            <div>
+              <label>Email*</label>
+              <input type="email" formControlName="email" style="width: 100%; padding: 8px;">
+            </div>
+          </div>
+          <div style="margin-bottom: 15px;">
+            <label>Role*</label>
+            <select formControlName="role" style="width: 200px; padding: 8px;">
+              <option value="">Select Role</option>
+              <option value="admin">Administrator</option>
+              <option value="manager">Manager</option>
+              <option value="technician">Technician</option>
+              <option value="receptionist">Receptionist</option>
+            </select>
+          </div>
+          <button type="submit" [disabled]="userForm.invalid"
+                  style="padding: 10px 15px; background: #007bff; color: white; border: none;">
+            Add User
+          </button>
+        </form>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background: #f8f9fa;">
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Name</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Email</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Role</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Status</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users()" style="border-bottom: 1px solid #ddd;">
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ user.name }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ user.email }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">{{ user.role }}</td>
+              <td style="border: 1px solid #ddd; padding: 10px;">
+                <span [style.color]="user.active ? 'green' : 'red'">
+                  {{ user.active ? 'Active' : 'Inactive' }}
+                </span>
+              </td>
+              <td style="border: 1px solid #ddd; padding: 10px;">
+                <button (click)="toggleUser(user)"
+                        style="padding: 5px 10px; margin-right: 5px; background: #ffc107; border: none;">
+                  {{ user.active ? 'Deactivate' : 'Activate' }}
+                </button>
+                <button style="padding: 5px 10px; background: #dc3545; color: white; border: none;">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  

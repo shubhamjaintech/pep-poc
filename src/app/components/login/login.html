@@ -1,0 +1,60 @@
+
+    <div style="max-width: 400px; margin: 100px auto; padding: 20px; border: 1px solid #ccc;">
+      <h2>Pep Boys Login</h2>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div style="margin-bottom: 15px;">
+          <label>Email:</label>
+          <input 
+            type="email" 
+            formControlName="email" 
+            style="width: 100%; padding: 8px; margin-top: 5px;"
+            placeholder="Enter email">
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" 
+               style="color: red; font-size: 12px;">
+            Email is required
+          </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+          <label>Password:</label>
+          <input 
+            type="password" 
+            formControlName="password" 
+            style="width: 100%; padding: 8px; margin-top: 5px;"
+            placeholder="Enter password">
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" 
+               style="color: red; font-size: 12px;">
+            Password is required
+          </div>
+        </div>
+
+        <div *ngIf="error()" style="color: red; margin-bottom: 15px;">
+          {{ error() }}
+        </div>
+
+        <button 
+          type="submit" 
+          [disabled]="loginForm.invalid || loading()"
+          style="width: 100%; padding: 10px; background: #007bff; color: white; border: none;">
+          {{ loading() ? 'Logging in...' : 'Login' }}
+        </button>
+      </form>
+
+      <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+        <h4>Demo Accounts:</h4>
+        <div style="margin: 5px 0;">
+          <button (click)="fillLogin('admin@pepboys.com', 'admin123')" 
+                  style="margin-right: 10px; padding: 5px;">Admin</button>
+          <button (click)="fillLogin('manager@pepboys.com', 'manager123')" 
+                  style="margin-right: 10px; padding: 5px;">Manager</button>
+        </div>
+        <div style="margin: 5px 0;">
+          <button (click)="fillLogin('tech@pepboys.com', 'tech123')" 
+                  style="margin-right: 10px; padding: 5px;">Technician</button>
+          <button (click)="fillLogin('reception@pepboys.com', 'reception123')" 
+                  style="padding: 5px;">Receptionist</button>
+        </div>
+      </div>
+    </div>
+  

@@ -1,0 +1,50 @@
+
+    <div>
+      <h2>Dashboard</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+        <div style="padding: 20px; border: 1px solid #ddd; text-align: center;">
+          <h3>Total Services</h3>
+          <div style="font-size: 24px; font-weight: bold; color: #007bff;">{{ stats().total }}</div>
+        </div>
+        <div style="padding: 20px; border: 1px solid #ddd; text-align: center;">
+          <h3>Pending</h3>
+          <div style="font-size: 24px; font-weight: bold; color: #ffc107;">{{ stats().pending }}</div>
+        </div>
+        <div style="padding: 20px; border: 1px solid #ddd; text-align: center;">
+          <h3>In Progress</h3>
+          <div style="font-size: 24px; font-weight: bold; color: #17a2b8;">{{ stats().inProgress }}</div>
+        </div>
+        <div style="padding: 20px; border: 1px solid #ddd; text-align: center;">
+          <h3>Completed</h3>
+          <div style="font-size: 24px; font-weight: bold; color: #28a745;">{{ stats().completed }}</div>
+        </div>
+      </div>
+
+      <h3>Recent Services</h3>
+      <div *ngIf="services().length === 0" style="padding: 20px; text-align: center; color: #666;">
+        No services registered yet
+      </div>
+
+      <div *ngFor="let service of services()" 
+           style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong>{{ service.serviceType }} - {{ service.vehicleInfo }}</strong>
+            <div style="color: #666; font-size: 14px;">
+              Customer: {{ service.customerName }} | Cost: {{ service.cost }}
+            </div>
+          </div>
+          <span [style.color]="getStatusColor(service.status)">
+            {{ service.status }}
+          </span>
+        </div>
+      </div>
+
+      <div style="margin-top: 30px;" *ngIf="canRegister()">
+        <a routerLink="/register-service" 
+           style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">
+          Register New Service
+        </a>
+      </div>
+    </div>
