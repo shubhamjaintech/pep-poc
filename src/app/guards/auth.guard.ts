@@ -14,16 +14,3 @@ export const authGuard = () => {
   router.navigate(['/login']);
   return false;
 };
-
-export const roleGuard = (roles: string[]) => () => {
-  const auth = inject(AuthService);
-  const router = inject(Router);
-  
-  const currentUser = auth.currentUserValue;
-  if (currentUser && roles.includes(currentUser.role)) {
-    return true;
-  }
-  
-  router.navigate(['/dashboard']);
-  return false;
-};
